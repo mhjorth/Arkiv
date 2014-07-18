@@ -14,8 +14,7 @@ namespace Arkiv
 			MainWindow win = new MainWindow ();
 			win.Show ();
 			var arkiv = new MongoDb ("arkiv");
-			var arkivDb = arkiv.getDatabase ();
-			var artistCollection = arkivDb.GetCollection<Artist> ("artist");
+			var artistCollection = arkiv.getCollection<Artist> ();
 			var newArtist = new Artist { 
 				name= "ddd" 
 			};

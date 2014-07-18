@@ -25,6 +25,12 @@ namespace Arkiv
 			return _database;
 		}
 
+		public MongoCollection<T> getCollection<T>()
+		{
+            var collectionName = "artist";
+			return _database.GetCollection<T> (collectionName);
+		}
+
 	}
 }
 

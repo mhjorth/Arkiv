@@ -1,11 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Arkiv/MainWindow.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Arkiv/Database/Artist.cs">
     <Files>
-      <File FileName="Arkiv/Program.cs" Line="11" Column="42" />
-      <File FileName="Arkiv/Database/Artist.cs" Line="1" Column="1" />
-      <File FileName="Arkiv/Database/MongoDb.cs" Line="1" Column="1" />
+      <File FileName="Arkiv/Program.cs" Line="17" Column="56" />
+      <File FileName="Arkiv/Database/Artist.cs" Line="8" Column="16" />
+      <File FileName="Arkiv/Database/MongoDb.cs" Line="30" Column="42" />
       <File FileName="Arkiv/MainWindow.cs" Line="1" Column="1" />
+      <File FileName="Arkiv/Database/IMongoCollection.cs" Line="7" Column="39" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -3,10 +3,11 @@ using MongoDB.Bson;
 
 namespace Arkiv
 {
-	public class Artist
+	public class Artist : IMongoCollection
 	{
-		public ObjectId Id { get; set; }
-		public string name { get; set; }
+        public string DbCollectionName { get { return  "name"; } }
+        public ObjectId Id { get; set; }
+        public string name { get; set; }
 	}
 }
 
