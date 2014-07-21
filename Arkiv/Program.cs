@@ -18,11 +18,11 @@ namespace Arkiv
 			var newArtist = new Artist { 
 				name= "ddd" 
 			};
-			var currentArtists = artistCollection.AsQueryable<Artist> () 
-				.Where (x => x.name == "ddd");
-			//var mongoQuery = ((MongoQueryable<Artist>)currentArtists).GetMongoQuery ();
-			//var currentArtistQuery = Query.EQ ("name", "ddd");
 			var currentArtistQuery = Query<Artist>.Where (x => x.name == "ddd");
+            var currentArtists = artistCollection.Find (currentArtistQuery);
+            foreach (var artist in currentArtists) {
+                Console.Write (artist.name);
+            }
 			artistCollection.Remove (currentArtistQuery);
 			artistCollection.Insert (newArtist);
 			Application.Run ();

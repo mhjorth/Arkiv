@@ -25,9 +25,9 @@ namespace Arkiv
 			return _database;
 		}
 
-		public MongoCollection<T> getCollection<T>()
+		public MongoCollection<T> getCollection<T>() where T : IMongoCollection, new()
 		{
-            var collectionName = "artist";
+            var collectionName = new T { }.DbCollectionName;
 			return _database.GetCollection<T> (collectionName);
 		}
 
