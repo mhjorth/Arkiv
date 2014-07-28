@@ -1,14 +1,19 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
   <MonoDevelop.Ide.Workbench ActiveDocument="ArkivWindow.cs">
     <Files>
-      <File FileName="ArkivWindow.cs" Line="32" Column="9" />
+      <File FileName="ArkivWindow.cs" Line="90" Column="14" />
+      <File FileName="Database/Artist.cs" Line="10" Column="33" />
+      <File FileName="Program.cs" Line="16" Column="1" />
+      <File FileName="Services/ArtistService.cs" Line="34" Column="1" />
+      <File FileName="Database/MongoDb.cs" Line="6" Column="2" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Arkiv" expanded="True">
-            <Node name="References" expanded="True" />
+            <Node name="Database" expanded="True" />
+            <Node name="Services" expanded="True" />
             <Node name="ArkivWindow.cs" selected="True" />
           </Node>
         </State>
