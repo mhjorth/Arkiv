@@ -147,9 +147,9 @@ namespace Arkiv
 
         public void ArtistSelectionChangedEvent(object o, EventArgs e)
         {
-            Console.WriteLine ("SelectionChangedEvent");
-
             SetNewArtistSelection ((o as IEnumerable<Artist>));
+            _artist.GrabFocus ();
+            _artistQuery.Text = "";
         }
 
     }

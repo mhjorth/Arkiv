@@ -22,31 +22,27 @@ namespace Arkiv
         public void RegisterEvents(EventHandler selectionChangedEvent){
             ArtistSelectionChanged += selectionChangedEvent;
         }
+
         public void FindAll(){
            _artist = _artistCollection.FindAll ().ToList ().OrderBy (x => x.name);
             if (ArtistSelectionChanged != null) {
-                ArtistSelectionChanged (this.ArtistSelection, EventArgs.Empty);
+                ArtistSelectionChanged (_artist, EventArgs.Empty);
             }
         }
 
         public void Find(Expression<Func<Artist,bool>> expr){
             var q = Query<Artist>.Where(expr);
             _artist = _artistCollection.Find (q).ToList ().OrderBy (x => x.name);
-        }
-
-        public int Count(){
-            return _artist.Count ();
-        }
-
-        public IEnumerable<Artist> ArtistSelection{
-            get {return _artist;}
+            if (ArtistSelectionChanged != null) {
+                ArtistSelectionChanged (_artist, EventArgs.Empty);
+            }
         }
 
         public void ArtistQueryActivated(object o, EventArgs a)
         {
             var query = (o as Entry).Text;
-            Console.WriteLine ("QueryActivated");
             Expression<Func<Artist,bool>> expr = null;
+            //Wildcard search
             if (query.Contains ("%")) {
                 var parts = query.Split ('%');
                 for (int i = 0; i < parts.Count(); i++) {
@@ -67,6 +63,7 @@ namespace Arkiv
                         }
                     }
                 }
+            //Exact match
             } else if (!string.IsNullOrWhiteSpace(query)) {
                 expr = x => x.name == query;
             }
@@ -75,9 +72,7 @@ namespace Arkiv
             } else {
                 Find (expr);
             }
-            if (ArtistSelectionChanged != null) {
-                ArtistSelectionChanged (this.ArtistSelection, EventArgs.Empty);
-            }
+ 
         }
 
         public event EventHandler ArtistSelectionChanged;
