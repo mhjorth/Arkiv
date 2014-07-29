@@ -3,6 +3,7 @@ using Gtk;
 using GLib;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace Arkiv
 {
@@ -12,7 +13,8 @@ namespace Arkiv
         private VBox _vbox1;
         private HBox _artistBox;
         private TextView _artist;
-        private TextView _textview1;
+        private Entry _artistQuery;
+        private TextView _artistNote;
         private Table _table1;
 
         private Artist[] _artistSelection;
@@ -20,12 +22,9 @@ namespace Arkiv
         private int _artistMaxIndex;
 
 
-        public ArkivWindow (IEnumerable<Artist> artistSelection) : base(WindowType.Toplevel)
+        public ArkivWindow () : base(WindowType.Toplevel)
         {
-            _artistSelection = artistSelection.ToArray(); 
-            _artistMaxIndex = _artistSelection.Count () - 1;
             Build ();
-            ShowFirstArtist ();
         }
 
         private void Build ()
@@ -39,9 +38,11 @@ namespace Arkiv
             _vbox1.Name = "vbox1";
             _vbox1.Spacing = 6;
 
+            //Artist box
             _artistBox = new HBox (false, 0);
             _vbox1.PackStart (_artistBox, false, false, 5);
 
+            //Artist name
             var artistLabel = new Label ("Artist");
             _artistBox.PackStart (artistLabel, false, true, 5);
             var buf = new TextBuffer (new TextTagTable ());
@@ -50,10 +51,20 @@ namespace Arkiv
             _artist.Editable = false;
             _artistBox.PackStart (_artist, false, true, 5);
 
-            _textview1 = new TextView ();
-            _textview1.CanFocus = true;
-            _textview1.Editable = false;
-            _vbox1.PackStart (_textview1, false, false, 5);
+            //Query field
+            _artistQuery = new Entry ();
+            _artistQuery.CanFocus = true;
+            _artistQuery.IsEditable = true;
+            _artistQuery.WidthRequest = 100;
+            _artistBox.PackEnd (_artistQuery, false, true, 5);
+            var queryLabel = new Label ("Search");
+            _artistBox.PackEnd (queryLabel, false, true, 5);
+
+            //Artist note
+            _artistNote = new TextView ();
+            _artistNote.CanFocus = true;
+            _artistNote.Editable = false;
+            _vbox1.PackStart (_artistNote, false, false, 5);
 
             _table1 = new Table (((uint)(5)), ((uint)(3)), false);
             _table1.Name = "table1";
@@ -69,26 +80,34 @@ namespace Arkiv
             DefaultWidth = 717;
             DefaultHeight = 300;
             Show ();
+        }
+
+        public void RegisterEvents(EventHandler artistQueryActivatedEvent){
+            //Local events
             DeleteEvent += new DeleteEventHandler (OnDeleteEvent);
             _artist.KeyReleaseEvent += new KeyReleaseEventHandler (ArtistKeyReleaseEvent);
+            //Handlers in other classes
+            _artistQuery.Activated += artistQueryActivatedEvent;
         }
 
         private void ShowArtist(int index){
+            if (index < 0 || index > _artistMaxIndex) {
+                _artist.Buffer.Clear ();
+                _artistNote.Buffer.Clear ();
+                return;
+            }
             var artist = _artistSelection [_currentArtistIndex];
             _artist.Buffer.Text = artist.name;
 
             if (string.IsNullOrWhiteSpace (artist.note)) {
-                _textview1.Hide ();
+                _artistNote.Hide ();
             } else {
-                _textview1.Buffer.Text = artist.note;
-                _textview1.Show ();
+                _artistNote.Buffer.Text = artist.note;
+                _artistNote.Show ();
             }
         }
         public void ShowFirstArtist ()
         {
-            if (_artistMaxIndex < 0) {
-                return;
-            }
             _currentArtistIndex = 0;
             ShowArtist (_currentArtistIndex);
         }
@@ -101,6 +120,13 @@ namespace Arkiv
         public void ShowPreviousArtist(){
             _currentArtistIndex = _currentArtistIndex >= 1 ? _currentArtistIndex - 1 : 0;
             ShowArtist (_currentArtistIndex);
+        }
+
+        public void SetNewArtistSelection(IEnumerable<Artist> artist){
+            _artistSelection = artist.ToArray ();
+            _artistMaxIndex = _artistSelection.Count () - 1;
+
+            ShowFirstArtist ();
         }
 
 	    protected void OnDeleteEvent (object sender, DeleteEventArgs a)
@@ -117,6 +143,13 @@ namespace Arkiv
             if (a.Event.Key == Gdk.Key.Down) {
                 ShowNextArtist ();
             }
+        }
+
+        public void ArtistSelectionChangedEvent(object o, EventArgs e)
+        {
+            Console.WriteLine ("SelectionChangedEvent");
+
+            SetNewArtistSelection ((o as IEnumerable<Artist>));
         }
 
     }
