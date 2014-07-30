@@ -16,7 +16,7 @@ namespace Arkiv
         public ArtistService (MongoDb db)
         {
             _db = db;
-            _artistCollection = _db.getCollection<Artist> ();
+            _artistCollection = _db.getCollection<Artist>();
         }
 
         public void RegisterEvents(EventHandler selectionChangedEvent){
@@ -24,7 +24,7 @@ namespace Arkiv
         }
 
         public void FindAll(){
-           _artist = _artistCollection.FindAll ().ToList ().OrderBy (x => x.name);
+            _artist = _artistCollection.FindAll().ToList().OrderBy(x => x.name);
             if (ArtistSelectionChanged != null) {
                 ArtistSelectionChanged (_artist, EventArgs.Empty);
             }
@@ -32,7 +32,7 @@ namespace Arkiv
 
         public void Find(Expression<Func<Artist,bool>> expr){
             var q = Query<Artist>.Where(expr);
-            _artist = _artistCollection.Find (q).ToList ().OrderBy (x => x.name);
+            _artist = _artistCollection.Find(q).ToList().OrderBy(x => x.name);
             if (ArtistSelectionChanged != null) {
                 ArtistSelectionChanged (_artist, EventArgs.Empty);
             }

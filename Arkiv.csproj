@@ -71,8 +71,8 @@
     <Compile Include="Database\MongoDb.cs" />
     <Compile Include="Database\Artist.cs" />
     <Compile Include="Database\IMongoCollection.cs" />
-    <Compile Include="ArkivWindow.cs" />
     <Compile Include="Services\ArtistService.cs" />
+    <Compile Include="WindowControl\ArkivWindow.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -81,5 +81,6 @@
   <ItemGroup>
     <Folder Include="Database\" />
     <Folder Include="Services\" />
+    <Folder Include="WindowControl\" />
   </ItemGroup>
 </Project>
