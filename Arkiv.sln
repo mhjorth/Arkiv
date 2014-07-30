@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arkiv", "Arkiv\Arkiv.csproj", "{ACE41275-902C-46CD-AE47-0BD9BA39A645}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arkiv", "Arkiv.csproj", "{ACE41275-902C-46CD-AE47-0BD9BA39A645}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,38 +15,6 @@ Global
 		{ACE41275-902C-46CD-AE47-0BD9BA39A645}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Arkiv\Arkiv.csproj
-		Policies = $0
-		$0.TextStylePolicy = $1
-		$1.FileWidth = 120
-		$1.inheritsSet = VisualStudio
-		$1.inheritsScope = text/plain
-		$1.scope = text/plain
-		$0.TextStylePolicy = $2
-		$2.FileWidth = 120
-		$2.inheritsSet = VisualStudio
-		$2.inheritsScope = text/plain
-		$2.scope = text/x-csharp
-		$0.CSharpFormattingPolicy = $3
-		$3.ElseIfNewLinePlacement = SameLine
-		$3.AfterDelegateDeclarationParameterComma = True
-		$3.inheritsSet = Mono
-		$3.inheritsScope = text/x-csharp
-		$3.scope = text/x-csharp
-		$0.TextStylePolicy = $4
-		$4.inheritsSet = null
-		$4.scope = application/config+xml
-		$0.XmlFormattingPolicy = $5
-		$5.inheritsSet = null
-		$5.scope = application/config+xml
-		$0.TextStylePolicy = $6
-		$6.FileWidth = 120
-		$6.inheritsSet = VisualStudio
-		$6.inheritsScope = text/plain
-		$6.scope = application/xml
-		$0.XmlFormattingPolicy = $7
-		$7.inheritsSet = Mono
-		$7.inheritsScope = application/xml
-		$7.scope = application/xml
+		StartupItem = Arkiv.csproj
 	EndGlobalSection
 EndGlobal

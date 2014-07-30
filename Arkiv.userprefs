@@ -1,21 +1,22 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Arkiv/ArkivWindow.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Database/Artist.cs">
     <Files>
-      <File FileName="Arkiv/Program.cs" Line="13" Column="23" />
-      <File FileName="Arkiv/Database/Artist.cs" Line="1" Column="1" />
-      <File FileName="Arkiv/Database/MongoDb.cs" Line="1" Column="1" />
-      <File FileName="Arkiv/ArkivWindow.cs" Line="5" Column="14" />
+      <File FileName="ArkivWindow.cs" Line="1" Column="1" />
+      <File FileName="Database/Artist.cs" Line="9" Column="20" />
+      <File FileName="Program.cs" Line="4" Column="1" />
+      <File FileName="Services/ArtistService.cs" Line="14" Column="25" />
+      <File FileName="Database/MongoDb.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Node name="Arkiv" expanded="True">
-            <Node name="References" expanded="True" />
-            <Node name="UserInterface" expanded="True" />
+            <Node name="References" expanded="True">
+              <Node name="MongoDB.Bson" selected="True" />
+            </Node>
             <Node name="Database" expanded="True" />
-            <Node name="Properties" expanded="True" />
-            <Node name="ArkivWindow.cs" selected="True" />
+            <Node name="Services" expanded="True" />
           </Node>
         </State>
       </Pad>

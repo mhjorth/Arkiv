@@ -1,9 +1,5 @@
 using System;
 using Gtk;
-using MongoDB.Driver.Linq;
-using System.Linq;
-using MongoDB.Driver.Builders;
-using System.Text;
 
 namespace Arkiv
 {
