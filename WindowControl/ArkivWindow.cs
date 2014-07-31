@@ -3,7 +3,6 @@ using Gtk;
 using GLib;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 
 namespace Arkiv
 {
@@ -106,23 +105,23 @@ namespace Arkiv
                 _artistNote.Show ();
             }
         }
-        public void ShowFirstArtist ()
+        private void ShowFirstArtist ()
         {
             _currentArtistIndex = 0;
             ShowArtist (_currentArtistIndex);
         }
 
-        public void ShowNextArtist(){
+        private void ShowNextArtist(){
             _currentArtistIndex = _currentArtistIndex < _artistMaxIndex ? _currentArtistIndex + 1 : _artistMaxIndex;
             ShowArtist (_currentArtistIndex);
         }
 
-        public void ShowPreviousArtist(){
+        private void ShowPreviousArtist(){
             _currentArtistIndex = _currentArtistIndex >= 1 ? _currentArtistIndex - 1 : 0;
             ShowArtist (_currentArtistIndex);
         }
 
-        public void SetNewArtistSelection(IEnumerable<Artist> artist){
+        private void SetNewArtistSelection(IEnumerable<Artist> artist){
             _artistSelection = artist.ToArray ();
             _artistMaxIndex = _artistSelection.Count () - 1;
 

@@ -18,7 +18,6 @@ namespace Arkiv
             artists.RegisterEvents (artistSelectionChangedHandler);
 
             artists.FindAll ();
-            win.ShowFirstArtist ();
             win.Show ();
 
 			Application.Run ();

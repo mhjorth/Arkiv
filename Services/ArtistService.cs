@@ -5,6 +5,7 @@ using System.Linq;
 using MongoDB.Driver.Builders;
 using System.Linq.Expressions;
 using Gtk;
+using System.Text.RegularExpressions;
 
 namespace Arkiv
 {
@@ -42,31 +43,8 @@ namespace Arkiv
         {
             var query = (o as Entry).Text;
             Expression<Func<Artist,bool>> expr = null;
-            //Wildcard search
-            if (query.Contains ("%")) {
-                var parts = query.Split ('%');
-                for (int i = 0; i < parts.Count(); i++) {
-                    Expression<Func<Artist,bool>> partExpr;
-                    var part = parts [i];
-                    if (!string.IsNullOrWhiteSpace (part)) {
-                        if (i == 0) {
-                            partExpr = x => x.name.StartsWith (part);
-                        } else if (i == parts.Count () - 1) {
-                            partExpr = x => x.name.EndsWith (part);
-                        } else {
-                            partExpr = x => x.name.Contains (part);
-                        }
-                        if (expr == null) {
-                            expr = partExpr;
-                        } else {
-                            expr = Expression.Lambda<Func<Artist,bool>> (Expression.And (expr.Body, partExpr.Body), expr.Parameters);
-                        }
-                    }
-                }
-            //Exact match
-            } else if (!string.IsNullOrWhiteSpace(query)) {
-                expr = x => x.name == query;
-            }
+            var pattern = "^" + query.Replace('_', '.').Replace("%", ".*") + "$";
+            expr = x => Regex.IsMatch(x.name, pattern, RegexOptions.IgnoreCase);
             if (expr == null) {
                 FindAll ();
             } else {
