@@ -11,9 +11,10 @@ namespace Arkiv
 {
     public class ArtistService
     {
-        private MongoDb _db;
-        private MongoCollection<Artist> _artistCollection;
-        private IEnumerable<Artist> _artist = new HashSet<Artist>{};
+        private readonly MongoDb _db;
+        private readonly MongoCollection<Artist> _artistCollection;
+        private IEnumerable<Artist> _artistSelection = new HashSet<Artist>{};
+
         public ArtistService (MongoDb db)
         {
             _db = db;
@@ -25,17 +26,17 @@ namespace Arkiv
         }
 
         public void FindAll(){
-            _artist = _artistCollection.FindAll().ToList().OrderBy(x => x.name);
+            _artistSelection = _artistCollection.FindAll().ToList().OrderBy(x => x.name);
             if (ArtistSelectionChanged != null) {
-                ArtistSelectionChanged (_artist, EventArgs.Empty);
+                ArtistSelectionChanged (_artistSelection, EventArgs.Empty);
             }
         }
 
         public void Find(Expression<Func<Artist,bool>> expr){
             var q = Query<Artist>.Where(expr);
-            _artist = _artistCollection.Find(q).ToList().OrderBy(x => x.name);
+            _artistSelection = _artistCollection.Find(q).ToList().OrderBy(x => x.name);
             if (ArtistSelectionChanged != null) {
-                ArtistSelectionChanged (_artist, EventArgs.Empty);
+                ArtistSelectionChanged (_artistSelection, EventArgs.Empty);
             }
         }
 
@@ -50,7 +51,6 @@ namespace Arkiv
             } else {
                 Find (expr);
             }
- 
         }
 
         public event EventHandler ArtistSelectionChanged;

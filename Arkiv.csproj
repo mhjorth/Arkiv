@@ -73,6 +73,7 @@
     <Compile Include="Database\IMongoCollection.cs" />
     <Compile Include="Services\ArtistService.cs" />
     <Compile Include="WindowControl\ArkivWindow.cs" />
+    <Compile Include="Database\Title.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

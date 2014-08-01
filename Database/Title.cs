@@ -1,16 +1,13 @@
 using System;
 using MongoDB.Bson;
-using System.Collections.Generic;
 
 namespace Arkiv
 {
-	public class Artist : IMongoCollection, IEquatable<Artist>
+	public class Title : IEquatable<Title>
 	{
-        public string DbCollectionName { get { return  "artist"; } }
-        public ObjectId Id { get; set; }
         public string name { get; set; }
         public string note { get; set; }
-        public List<Title> titles { get; set; }
+        public int year { get; set; }
 
         public override bool Equals(object other)
         {
@@ -18,11 +15,11 @@ namespace Arkiv
                 return false;
             if (ReferenceEquals (this, other))
                 return true;
-            var entity = other as Artist;
+            var entity = other as Title;
             return name == entity.name;
         }
 
-        public bool Equals(Artist other)
+        public bool Equals(Title other)
         {
             return Equals (other as object);
         }
